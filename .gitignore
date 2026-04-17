@@ -1,6 +1,6 @@
-/.gatling
-/.github
-/.idea
-/.mvn
+.gatling/
+.github/
+.idea/
+.mvn/
 mvnw
 mvnw.cmd
