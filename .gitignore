@@ -1,2 +1,6 @@
-/target
-/.mvn/wrapper/*.jar
+/.gatling
+/.github
+/.idea
+/.mvn
+mvnw
+mvnw.cmd

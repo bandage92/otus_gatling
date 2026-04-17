@@ -1,0 +1,7 @@
+username,password,firstName,lastName,address1,address2,creditCard,expDate
+olgaUser6,welcome1,Olga,Margevich,Minsk,Belarus,3333 3333 3333 3333,03/28
+olgaUser1,welcome1,Anna,Kuznetsova,Moscow,Russia,4444 4444 4444 4444,04/27
+olgaUser2,welcome1,Dmitriy,Kuznetsov,Moscow,Russia,5555 5555 5555 5555,12/30
+olgaUser3,welcome1,Alex,Smirnov,Smolensk,Russia,6666 6666 6666 6666,06/29
+olgaUser4,welcome1,Natali,Korsak,Brest,Belarus,7777 7777 7777 7777,07/26
+olgaUser7,welcome1,Michael,Gorbunkov,Vitebsk,Belarus,8888 8888 8888 8888,08/31
