@@ -1,8 +1,8 @@
 package webtours;
 
+import static java.util.concurrent.ThreadLocalRandom.current;
 import static io.gatling.javaapi.core.CoreDsl.*;
 import static io.gatling.javaapi.http.HttpDsl.*;
-import static java.util.concurrent.ThreadLocalRandom.current;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +14,7 @@ public class Actions {
   // Open root page & get 'userSession'
   public static ChainBuilder openRootPage() {
     return exec(
-        http("UC01.1_OpenRootPage_GET_/welcome.pl")// без этого запроса userSession выглядит так '0AA'
+        http("UC01.1_OpenRootPage_GET_/welcome.pl") // без этого запроса userSession выглядит как '0AA'
             .get("/cgi-bin/welcome.pl")
             .queryParam("signOff", "true")
             .check(status().is(200))
@@ -28,7 +28,7 @@ public class Actions {
                     "<input type=\"hidden\" name=\"userSession\" value=\"([^\"]+)\"/>").saveAs("userSession"))
         )
         .exec(session -> {
-          //System.out.println("userSession: " + session.getString("userSession"));
+          System.out.println("userSession: " + session.getString("userSession"));
           return session;
         });
   }
@@ -49,7 +49,7 @@ public class Actions {
             .check(status().is(200))
     )
         .exec(session -> {
-          //System.out.println("Login: " + session.getString("username") + " / " + session.getString("password"));
+          System.out.println("Login: " + session.getString("username") + " / " + session.getString("password"));
           return session;
         });
   }
@@ -82,8 +82,8 @@ public class Actions {
             session = session.set("departCity", uniqueCities.get(departureIndex));
             session = session.set("arrivalCity", uniqueCities.get(arrivalIndex));
             
-            //System.out.println("departCity: " + uniqueCities.get(departureIndex));
-            //System.out.println("arrivalCity: " + uniqueCities.get(arrivalIndex));
+            System.out.println("departCity: " + uniqueCities.get(departureIndex));
+            System.out.println("arrivalCity: " + uniqueCities.get(arrivalIndex));
           }
           return session;
         });
@@ -118,7 +118,7 @@ public class Actions {
           if (!flights.isEmpty()) {
             int randomIndex = current().nextInt(flights.size());
             String selectedFlight = flights.get(randomIndex);
-            //System.out.println("Selected flight: " + selectedFlight);
+            System.out.println("Selected flight: " + selectedFlight);
             
             session = session.set("outboundFlight", selectedFlight);
           }
@@ -189,8 +189,8 @@ public class Actions {
       session = session.set("departDate", departDate);
       session = session.set("returnDate", returnDate);
       
-      //System.out.println("departDate: " + departDate);
-      //System.out.println("returnDate: " + returnDate);
+      System.out.println("departDate: " + departDate);
+      System.out.println("returnDate: " + returnDate);
       
       return session;
     });
