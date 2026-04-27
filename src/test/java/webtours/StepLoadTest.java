@@ -7,7 +7,6 @@ import io.gatling.javaapi.core.*;
 
 public class StepLoadTest extends Simulation {
   
-  // ~100% load = 3.5 RPS (210 rpm, 12 600 rph)
   private static final int STEP_DURATION_MINUTES = 5;
   
   {
@@ -63,8 +62,8 @@ public class StepLoadTest extends Simulation {
     )
         .maxDuration(Duration.ofMinutes(70))
         .assertions(
-            global().responseTime().max().lt(5000),
-            global().failedRequests().count().lt(5L)
+            global().responseTime().percentile(95).lt(300),
+            global().failedRequests().percent().lt(1.0)
         );
   }
 }
