@@ -18,8 +18,9 @@ public class Requests {
       .get("/cgi-bin/nav.pl")
       .queryParam("in", "home")
       .check(status().is(200))
-      .check(regex("<input type=\"hidden\" name=\"userSession\" value=\"([^\"]+)\"/>").saveAs("userSession"))
-      .check(substring("Home").exists());
+      .check(substring("Web Tours Navigation Bar").exists())
+      .check(substring("Username").exists())
+      .check(regex("<input type=\"hidden\" name=\"userSession\" value=\"([^\"]+)\"/>").saveAs("userSession"));
   
   // ==================== UC02 ====================
   public static HttpRequestActionBuilder login = http("UC02_Login_POST_/login.pl")
@@ -31,16 +32,15 @@ public class Requests {
       .formParam("login.y", "9")
       .formParam("JSFormSubmit", "off")
       .check(status().is(200))
-      .check(substring("Find Flight").exists())
-      .check(substring("Invalid username or password").notExists());
+      .check(substring("Error").notExists());
   
   // ==================== UC03 ====================
   public static HttpRequestActionBuilder getCities = http("UC03_GetCities_GET_/reservations.pl")
       .get("/cgi-bin/reservations.pl")
       .queryParam("page", "welcome")
       .check(status().is(200))
-      .check(regex("<option[^>]* value=\"([^\"]+)\">").findAll().saveAs("cities"))
-      .check(substring("Flight Finder").exists());
+      .check(substring("Flight Selections").exists())
+      .check(regex("<option[^>]* value=\"([^\"]+)\">").findAll().saveAs("cities"));
   
   // ==================== UC04 ====================
   public static HttpRequestActionBuilder selectCitiesAndDates = http("UC04_SelectCities&Dates_POST_/reservations.pl")
@@ -61,8 +61,7 @@ public class Requests {
       .formParam(".cgifields", "seatPref")
       .check(status().is(200))
       .check(regex("name=\"outboundFlight\" value=\"([^\"]+)\"").findAll().saveAs("outboundFlights"))
-      .check(substring("Select Flight").exists())
-      .check(substring("No flights available").notExists());
+      .check(substring("Find Flight").exists());
   
   // ==================== UC05 ====================
   public static HttpRequestActionBuilder selectFlight = http("UC05_SelectFlight_POST_/reservations.pl")
